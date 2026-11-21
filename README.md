@@ -17,7 +17,7 @@ $ pnpm lint        # a Next.js starter, 33 files
 It's an add-on for Oxlint, not a replacement for it. You still run plain `oxlint` and `oxlint --fix`, and every rule is configured in `.oxlintrc.json` like any other Oxlint rule. The package brings two things:
 
 1. Presets (`base`, `react`, `next`, `storybook`) that turn on the Oxlint rules the ESLint config used, with the same options.
-2. The 84 rules Oxlint doesn't have, or has with different behavior: `@eslint-react/*`, `storybook/*`, `prefer-arrow-functions`, a few ESLint core rules, and this package's own `webadeva/*` rules. They're written in Rust and load into Oxlint as a JS plugin, so nothing from the ESLint config was dropped.
+2. The 86 rules Oxlint doesn't have, or has with different behavior: `@eslint-react/*`, `storybook/*`, `prefer-arrow-functions`, a few ESLint core rules, and this package's own `webadeva/*` rules. They're written in Rust and load into Oxlint as a JS plugin, so nothing from the ESLint config was dropped.
 
 Formatting moves to [oxfmt](https://oxc.rs/docs/guide/usage/formatter.html), which takes over from Prettier and `prettier-plugin-organize-imports`.
 
@@ -146,18 +146,18 @@ JS plugins run at JavaScript speed, though. In the Next.js starter measured at t
 
 Most rule ids are what you'd expect from Oxlint. Add-on rules keep their ESLint ids, except where Oxlint has already claimed the plugin name. You'll need to update disable comments and rule overrides that mention these:
 
-| In `@webadeva/eslint-config`                             | Here                    |
-| -------------------------------------------------------- | ----------------------- |
-| `camelcase`, `getter-return`, `no-dupe-args`, `no-octal` | `eslint-js/<rule>`      |
-| `react-hooks/config`, `react-hooks/gating`               | `react-hooks-js/<rule>` |
-| other `react-hooks/<rule>`                               | `react/<rule>`          |
-| `react-refresh/<rule>`                                   | `react/<rule>`          |
-| `@typescript-eslint/<rule>`                              | `typescript/<rule>`     |
-| `jsx-a11y-x/<rule>`                                      | `jsx-a11y/<rule>`       |
-| `@next/next/<rule>`                                      | `nextjs/<rule>`         |
-| other core rules, such as `no-console`                   | unchanged               |
-| `@eslint-react/*`, `storybook/*`, `webadeva/*`           | unchanged               |
-| `prefer-arrow-functions/*`, `eslint-comments/*`          | unchanged               |
+| In `@webadeva/eslint-config`                                             | Here                    |
+| ------------------------------------------------------------------------ | ----------------------- |
+| `camelcase`, `getter-return`, `no-dupe-args`, `no-octal`, `no-redeclare` | `eslint-js/<rule>`      |
+| `react-hooks/config`, `react-hooks/gating`                               | `react-hooks-js/<rule>` |
+| other `react-hooks/<rule>`                                               | `react/<rule>`          |
+| `react-refresh/<rule>`                                                   | `react/<rule>`          |
+| `@typescript-eslint/<rule>`                                              | `typescript/<rule>`     |
+| `jsx-a11y-x/<rule>`                                                      | `jsx-a11y/<rule>`       |
+| `@next/next/<rule>`                                                      | `nextjs/<rule>`         |
+| other core rules, such as `no-console`                                   | unchanged               |
+| `@eslint-react/*`, `storybook/*`, `webadeva/*`                           | unchanged               |
+| `prefer-arrow-functions/*`, `eslint-comments/*`                          | unchanged               |
 
 In its output Oxlint writes the plugin in parentheses, as in `eslint-js(camelcase)` or `@eslint-react(no-missing-key)`.
 
@@ -173,7 +173,6 @@ On a real project the results line up closely. On a test file full of deliberate
 - `eslint-comments/require-description` reports column 1 of the comment's line; ESLint said column 0.
 - `eslint-js/no-octal` fires in sloppy-mode code, where ESLint's TypeScript parser gave up with a parse error.
 - `storybook/*` rules can't use `includeStories`/`excludeStories` regexes with lookaround or backreferences. A filter like that matches nothing.
-- Oxlint's `no-redeclare` doesn't report TypeScript function overloads. ESLint's did, by mistake.
 - Oxlint's `prefer-const` and `no-unreachable` put some reports at a different position.
 - Oxlint's `typescript/no-inferrable-types` also flags literal-type annotations.
 - Oxlint's `sort-imports` reorders lists already sorted by code point (`{ Zed, alpha }`), and wants inline `type` specifiers where their name sorts instead of last.

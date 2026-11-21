@@ -102,7 +102,6 @@
     "no-nonoctal-decimal-escape": "error",
     "no-obj-calls": "error",
     "no-prototype-builtins": "error",
-    "no-redeclare": "error",
     "no-regex-spaces": "error",
     "no-self-assign": "error",
     "no-setter-return": "error",
@@ -360,6 +359,12 @@
     "jsx-a11y/scope": "error",
     "jsx-a11y/tabindex-no-positive": "error",
     "eslint-js/no-dupe-args": "error",
+    "eslint-js/no-redeclare": [
+      "error",
+      {
+        "builtinGlobals": true
+      }
+    ],
     "eslint-js/no-octal": "error",
     "eslint-js/camelcase": "error",
     "eslint-js/getter-return": "error",

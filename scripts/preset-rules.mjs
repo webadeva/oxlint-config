@@ -52,7 +52,6 @@ export const base = {
     "no-nonoctal-decimal-escape": "error",
     "no-obj-calls": "error",
     "no-prototype-builtins": "error",
-    "no-redeclare": "error",
     "no-regex-spaces": "error",
     "no-self-assign": "error",
     "no-setter-return": "error",
@@ -173,6 +172,9 @@ export const base = {
   },
   rust: {
     "no-dupe-args": "error",
+    // Oxlint's native version reports the first declaration and skips
+    // TypeScript declaration merges; ESLint reports every later one.
+    "no-redeclare": ["error", { builtinGlobals: true }],
     "no-octal": "error",
     camelcase: "error",
     "getter-return": "error",

@@ -88,17 +88,18 @@ Every rule keeps the ESLint version's severity and options. The options are in [
 
 ### Every preset
 
-| Rule                                            | Severity | Notes                                                     |
-| ----------------------------------------------- | -------- | --------------------------------------------------------- |
-| `eslint-js/camelcase`                           | `error`  | Not in Oxlint                                             |
-| `eslint-js/getter-return`                       | `error`  | Oxlint's native version differs from ESLint's             |
-| `eslint-js/no-dupe-args`                        | `error`  | Not in Oxlint                                             |
-| `eslint-js/no-octal`                            | `error`  | Not in Oxlint                                             |
-| `prefer-arrow-functions/prefer-arrow-functions` | `warn`   |                                                           |
-| `eslint-comments/require-description`           | `error`  | [Above](#eslint-commentsrequire-description)              |
-| `webadeva/max-lines`                            | `error`  | [Above](#webadevamax-lines-and-webadevamax-lines-warning) |
-| `webadeva/max-lines-warning`                    | `warn`   | [Above](#webadevamax-lines-and-webadevamax-lines-warning) |
-| `webadeva/typescript-file-in-project`           | `error`  | [Above](#webadevatypescript-file-in-project)              |
+| Rule                                            | Severity | Notes                                                                                                                    |
+| ----------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `eslint-js/camelcase`                           | `error`  | Not in Oxlint                                                                                                            |
+| `eslint-js/getter-return`                       | `error`  | Oxlint's native version differs from ESLint's                                                                            |
+| `eslint-js/no-dupe-args`                        | `error`  | Not in Oxlint                                                                                                            |
+| `eslint-js/no-octal`                            | `error`  | Not in Oxlint                                                                                                            |
+| `eslint-js/no-redeclare`                        | `error`  | Oxlint's native version reports the first declaration instead of the later ones, and skips TypeScript declaration merges |
+| `prefer-arrow-functions/prefer-arrow-functions` | `warn`   |                                                                                                                          |
+| `eslint-comments/require-description`           | `error`  | [Above](#eslint-commentsrequire-description)                                                                             |
+| `webadeva/max-lines`                            | `error`  | [Above](#webadevamax-lines-and-webadevamax-lines-warning)                                                                |
+| `webadeva/max-lines-warning`                    | `warn`   | [Above](#webadevamax-lines-and-webadevamax-lines-warning)                                                                |
+| `webadeva/typescript-file-in-project`           | `error`  | [Above](#webadevatypescript-file-in-project)                                                                             |
 
 ### React, Next.js, and Storybook
 
@@ -118,6 +119,16 @@ The compiler rules also run natively in Oxlint as `react/<rule>`. The ESLint ver
 `react-hooks-js/config` and `react-hooks-js/gating` (`error`) are on too. They are ESLint's `react-hooks/config` and `react-hooks/gating`. As in ESLint, they only report problems with React Compiler options, and the preset sets none, so they never fire.
 
 The Next.js preset adds no add-on rules.
+
+### Off in every preset
+
+`@eslint-react/component-hook-factories` reports components and hooks defined inside another function. A factory like that gives them a new identity on every call, so React remounts them and loses their state. It's a port of the rule from @eslint-react 3, which v5 dropped, so the presets (like the ESLint version on v5) leave it off. Configs that came from an older @eslint-react can turn it on in the React presets:
+
+```json
+{
+  "rules": { "@eslint-react/component-hook-factories": "error" }
+}
+```
 
 ### Storybook
 

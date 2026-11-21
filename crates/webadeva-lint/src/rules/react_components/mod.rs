@@ -6,6 +6,7 @@ mod api_rules;
 mod class_rules;
 mod component_rules;
 pub mod helpers;
+mod hook_factories;
 mod naming;
 mod overlap;
 mod purity;
@@ -77,6 +78,7 @@ pub fn rules() -> Vec<Box<dyn Rule>> {
         Box::new(api_rules::NoForwardRef),
         Box::new(api_rules::NoUseContext),
         Box::new(component_rules::NoNestedComponentDefinitions),
+        Box::new(hook_factories::ComponentHookFactories),
         Box::new(component_rules::NoNestedLazyComponentDeclarations),
         Box::new(component_rules::NoUnnecessaryUsePrefix),
         Box::new(component_rules::UseState),

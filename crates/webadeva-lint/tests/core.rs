@@ -769,3 +769,26 @@ fn fix_with_other_core_rules() {
         FIX_MULTI,
     );
 }
+
+// ---------------------------------------------------------------------------
+// no-redeclare: ESLint's core rule on typescript-eslint's scope manager.
+
+#[test]
+fn no_redeclare() {
+    assert_lines(
+        lint_fixture(
+            "no-redeclare",
+            json!({ "no-redeclare": ["error", { "builtinGlobals": true }] }),
+            Value::Null,
+        ),
+        NO_REDECLARE,
+    );
+    assert_lines(
+        lint_fixture(
+            "no-redeclare",
+            json!({ "no-redeclare": ["error", { "builtinGlobals": false }] }),
+            Value::Null,
+        ),
+        NO_REDECLARE_NO_BUILTINS,
+    );
+}
