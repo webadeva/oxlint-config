@@ -17,12 +17,49 @@ use serde_json::Value;
 // ---------------------------------------------------------------------------
 // Paths
 
-/// TypeScript's `getNormalizedAbsolutePath`: resolve `.` and `..` lexically.
+/// The root of an absolute path with `/` separators: a Windows drive
+/// (`D:/`, drive letter uppercased), a UNC share (`//server/share/`), or `/`,
+/// and the rest. Verbatim prefixes (`//?/`, from `canonicalize`) are dropped.
+fn split_root(s: &str) -> (String, &str) {
+    let (unc, s) = if let Some(rest) = s.strip_prefix("//?/UNC/") {
+        (true, rest)
+    } else if let Some(rest) = s.strip_prefix("//?/") {
+        (false, rest)
+    } else if let Some(rest) = s.strip_prefix("//") {
+        (true, rest)
+    } else {
+        (false, s)
+    };
+    let b = s.as_bytes();
+    if !unc && b.len() >= 2 && b[0].is_ascii_alphabetic() && b[1] == b':' {
+        return (
+            format!("{}:/", (b[0] as char).to_ascii_uppercase()),
+            &s[2..],
+        );
+    }
+    if unc {
+        let mut it = s.splitn(3, '/');
+        let server = it.next().unwrap_or("");
+        let share = it.next().unwrap_or("");
+        return (format!("//{server}/{share}/"), it.next().unwrap_or(""));
+    }
+    ("/".into(), s)
+}
+
+/// Whether a path or spec is absolute: `/x`, `D:/x`, or a UNC path.
+fn is_rooted(s: &str) -> bool {
+    let b = s.as_bytes();
+    s.starts_with(['/', '\\']) || (b.len() >= 2 && b[0].is_ascii_alphabetic() && b[1] == b':')
+}
+
+/// TypeScript's `getNormalizedAbsolutePath`: `/` separators, `.` and `..`
+/// resolved lexically. On Windows the drive stays (`D:/repo/src/x.ts`), so the
+/// result still names a real file there.
 pub fn normalize(path: &Path) -> PathBuf {
+    let s = path.to_string_lossy().replace('\\', "/");
+    let (mut out, rest) = split_root(&s);
     let mut parts: Vec<&str> = Vec::new();
-    let s = path.to_string_lossy();
-    let s = s.replace('\\', "/");
-    for comp in s.split('/') {
+    for comp in rest.split('/') {
         match comp {
             "" | "." => {}
             ".." => {
@@ -31,13 +68,12 @@ pub fn normalize(path: &Path) -> PathBuf {
             c => parts.push(c),
         }
     }
-    let mut out = String::from("/");
     out.push_str(&parts.join("/"));
     PathBuf::from(out)
 }
 
 fn join(base: &Path, rel: &str) -> PathBuf {
-    if rel.starts_with('/') {
+    if is_rooted(rel) {
         normalize(Path::new(rel))
     } else {
         normalize(&base.join(rel))
@@ -330,7 +366,7 @@ fn file_exists(p: &Path) -> bool {
 /// `getExtendsConfigPath`
 fn extends_path(spec: &str, base: &Path) -> Option<PathBuf> {
     let spec = spec.replace('\\', "/");
-    if spec.starts_with('/') || spec.starts_with("./") || spec.starts_with("../") {
+    if is_rooted(&spec) || spec.starts_with("./") || spec.starts_with("../") {
         let mut p = join(base, &spec);
         if !file_exists(&p) && !spec.ends_with(".json") {
             p = PathBuf::from(format!("{}.json", path_str(&p)));
@@ -506,9 +542,7 @@ fn parse_raw(path: &Path, stack: &mut Vec<PathBuf>) -> Option<Raw> {
                         items
                             .iter()
                             .map(|it| match it.as_str() {
-                                Some(s) if starts_with_config_dir(s) || s.starts_with('/') => {
-                                    it.clone()
-                                }
+                                Some(s) if starts_with_config_dir(s) || is_rooted(s) => it.clone(),
                                 Some(s) => Value::String(path_str(&join(&ext_dir, s))),
                                 None => it.clone(),
                             })
@@ -834,6 +868,33 @@ mod tests {
     }
     fn exc(spec: &str, path: &str) -> bool {
         Spec::new(spec, Path::new("/p"), Usage::Exclude).is_some_and(|s| s.matches(Path::new(path)))
+    }
+
+    #[test]
+    fn normalize_keeps_windows_roots() {
+        let n = |p: &str| normalize(Path::new(p)).to_string_lossy().into_owned();
+        assert_eq!(n("/repo/./pkg/../src/x.ts"), "/repo/src/x.ts");
+        assert_eq!(n(r"D:\repo\pkg\..\src\x.ts"), "D:/repo/src/x.ts");
+        assert_eq!(n(r"d:\repo\src"), "D:/repo/src");
+        assert_eq!(n("D:/repo/../.."), "D:/");
+        assert_eq!(n(r"\\?\D:\repo\src"), "D:/repo/src");
+        assert_eq!(n(r"\\server\share\repo\..\src"), "//server/share/src");
+        assert_eq!(n(r"\\?\UNC\server\share\src"), "//server/share/src");
+    }
+
+    /// The Windows bug: specs and files under a drive must still match.
+    #[test]
+    fn specs_match_under_a_drive() {
+        let base = Path::new(r"D:\repo\pkg");
+        let m = |spec: &str, path: &str| {
+            Spec::new(spec, base, Usage::Files)
+                .is_some_and(|s| s.matches(&normalize(Path::new(path))))
+        };
+        assert!(m("src", r"D:\repo\pkg\src\a\x.ts"));
+        assert!(m("src/**/*.ts", r"d:\repo\pkg\src\x.ts"));
+        assert!(!m("src", r"D:\repo\other\src\x.ts"));
+        assert!(m(r"D:\repo\pkg\lib", r"D:\repo\pkg\lib\y.ts"));
+        assert!(is_rooted("D:/x") && is_rooted(r"\\server\share") && !is_rooted("src"));
     }
 
     #[test]
