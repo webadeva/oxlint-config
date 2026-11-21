@@ -1,6 +1,6 @@
 {
   "name": "@webadeva/oxlint-config",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Oxlint presets for TypeScript projects ported from @webadeva/eslint-config, plus an oxlint add-on with the rules oxlint lacks (implemented in Rust): React, Next.js, Storybook, and oxfmt formatting.",
   "keywords": [
     "a11y",
