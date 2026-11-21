@@ -1,6 +1,6 @@
 [package]
 name = "webadeva-lint"
-version = "0.1.0"
+version = "0.0.0"
 edition = "2024"
 description = "Rules of @webadeva/oxlint-config that oxlint lacks, as a native Node add-on loaded by an oxlint JS plugin"
 license = "MIT"
