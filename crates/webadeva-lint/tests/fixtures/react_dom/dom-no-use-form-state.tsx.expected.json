@@ -1,0 +1,18 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-use-form-state",
+  "line": 3,
+  "column": 16,
+  "endLine": 3,
+  "endColumn": 39,
+  "message": "[Deprecated] Use 'useActionState' from 'react' package instead."
+ },
+ {
+  "rule": "@eslint-react/dom-no-use-form-state",
+  "line": 4,
+  "column": 18,
+  "endLine": 4,
+  "endColumn": 44,
+  "message": "[Deprecated] Use 'useActionState' from 'react' package instead."
+ }
+]

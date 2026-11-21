@@ -1,0 +1,26 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-render",
+  "line": 2,
+  "column": 1,
+  "endLine": 2,
+  "endColumn": 49,
+  "message": "[Deprecated] Use 'createRoot(node).render()' instead."
+ },
+ {
+  "rule": "@eslint-react/dom-no-render",
+  "line": 3,
+  "column": 1,
+  "endLine": 3,
+  "endColumn": 31,
+  "message": "[Deprecated] Use 'createRoot(node).render()' instead."
+ },
+ {
+  "rule": "@eslint-react/dom-no-render",
+  "line": 5,
+  "column": 11,
+  "endLine": 5,
+  "endColumn": 41,
+  "message": "[Deprecated] Use 'createRoot(node).render()' instead."
+ }
+]

@@ -1,0 +1,12 @@
+const a = <iframe sandbox="allow-scripts allow-same-origin" />;
+const b = <iframe sandbox={"allow-same-origin allow-scripts"} />;
+const c = <iframe sandbox="allow-scripts" />;
+const d = <iframe sandbox="allow-same-origin" />;
+const e = <Frame as="iframe" sandbox="allow-scripts allow-same-origin" />;
+const f = <Frame as="IFRAME" sandbox="allow-scripts allow-same-origin" />;
+const g = <div sandbox="allow-scripts allow-same-origin" />;
+const props = { sandbox: "allow-scripts allow-same-origin" };
+const h = <iframe {...props} />;
+const i = <iframe sandbox />;
+const s = "allow-scripts allow-same-origin";
+const j = <iframe sandbox={s} />;

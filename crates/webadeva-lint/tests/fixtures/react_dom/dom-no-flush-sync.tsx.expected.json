@@ -1,0 +1,34 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-flush-sync",
+  "line": 5,
+  "column": 1,
+  "endLine": 5,
+  "endColumn": 20,
+  "message": "Using 'flushSync' is uncommon and can hurt the performance of your app."
+ },
+ {
+  "rule": "@eslint-react/dom-no-flush-sync",
+  "line": 6,
+  "column": 1,
+  "endLine": 6,
+  "endColumn": 29,
+  "message": "Using 'flushSync' is uncommon and can hurt the performance of your app."
+ },
+ {
+  "rule": "@eslint-react/dom-no-flush-sync",
+  "line": 7,
+  "column": 1,
+  "endLine": 7,
+  "endColumn": 23,
+  "message": "Using 'flushSync' is uncommon and can hurt the performance of your app."
+ },
+ {
+  "rule": "@eslint-react/dom-no-flush-sync",
+  "line": 8,
+  "column": 1,
+  "endLine": 8,
+  "endColumn": 13,
+  "message": "Using 'flushSync' is uncommon and can hurt the performance of your app."
+ }
+]

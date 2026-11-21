@@ -1,0 +1,327 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  # The rule groups the Node add-on ships with (see package.json build:native).
+  ADDON_FEATURES: napi,core,react_dom,react_components,storybook
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: crates/webadeva-lint
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Self-test the version bump script
+        run: node .github/scripts/next-version.mjs --self-test
+
+      - name: cargo fmt
+        run: cargo fmt --manifest-path crates/webadeva-lint/Cargo.toml --check
+
+      - name: cargo clippy
+        run: cargo clippy --manifest-path crates/webadeva-lint/Cargo.toml --all-targets --locked -- -D warnings
+
+      - name: cargo clippy (add-on)
+        run: cargo clippy --manifest-path crates/webadeva-lint/Cargo.toml --lib --locked --no-default-features --features "$ADDON_FEATURES" -- -D warnings
+
+      # Presets and add-on build, repo lint, cargo test and the node tests.
+      - name: Build, lint, test
+        run: pnpm check
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Smoke test the packed packages
+        run: node .github/scripts/smoke-test.mjs
+
+  version:
+    needs: test
+    # startsWith ignores case, like next-version.mjs.
+    if: "github.event.head_commit != null && !startsWith(github.event.head_commit.message, 'chore(release):') && !startsWith(github.event.head_commit.message, 'no-release:')"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      new: ${{ steps.next.outputs.new }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Compute next version
+        id: next
+        env:
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          set -euo pipefail
+          CUR=$(node -p "require('./package.json').version")
+          NEW=$(node .github/scripts/next-version.mjs "$CUR" "$COMMIT_MSG")
+          echo "new=$NEW" >> "$GITHUB_OUTPUT"
+
+  # One Node add-on (the crate's cdylib) per platform package. Linux targets
+  # cross-compile with cargo-zigbuild (gnu builds link against glibc 2.17 so
+  # they load on old distros; musl builds link libc dynamically, since a
+  # cdylib cannot be static). macOS and Windows build on their own runners;
+  # on macOS, build.rs (napi-build) links Node's symbols with dynamic lookup.
+  build:
+    needs: version
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - {
+              platform: linux-x64-gnu,
+              target: x86_64-unknown-linux-gnu,
+              zig: ".2.17",
+              os: ubuntu-latest,
+              lib: libwebadeva_lint.so,
+            }
+          - {
+              platform: linux-arm64-gnu,
+              target: aarch64-unknown-linux-gnu,
+              zig: ".2.17",
+              os: ubuntu-latest,
+              lib: libwebadeva_lint.so,
+            }
+          - {
+              platform: linux-x64-musl,
+              target: x86_64-unknown-linux-musl,
+              zig: "",
+              os: ubuntu-latest,
+              lib: libwebadeva_lint.so,
+              rustflags: "-C target-feature=-crt-static",
+            }
+          - {
+              platform: linux-arm64-musl,
+              target: aarch64-unknown-linux-musl,
+              zig: "",
+              os: ubuntu-latest,
+              lib: libwebadeva_lint.so,
+              rustflags: "-C target-feature=-crt-static",
+            }
+          - {
+              platform: darwin-x64,
+              target: x86_64-apple-darwin,
+              os: macos-latest,
+              lib: libwebadeva_lint.dylib,
+            }
+          - {
+              platform: darwin-arm64,
+              target: aarch64-apple-darwin,
+              os: macos-latest,
+              lib: libwebadeva_lint.dylib,
+            }
+          - {
+              platform: win32-x64,
+              target: x86_64-pc-windows-msvc,
+              os: windows-latest,
+              lib: webadeva_lint.dll,
+            }
+          - {
+              platform: win32-arm64,
+              target: aarch64-pc-windows-msvc,
+              os: windows-latest,
+              lib: webadeva_lint.dll,
+            }
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    env:
+      NEW: ${{ needs.version.outputs.new }}
+      RUSTFLAGS: ${{ matrix.rustflags || '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: crates/webadeva-lint
+          key: ${{ matrix.target }}
+
+      - name: Setup Zig
+        if: runner.os == 'Linux'
+        uses: mlugg/setup-zig@v2
+
+      - name: Install cargo-zigbuild
+        if: runner.os == 'Linux'
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-zigbuild
+
+      # So the crate's version matches the npm release.
+      - name: Set crate version
+        run: node .github/scripts/set-version.mjs "$NEW"
+
+      - name: Build (zigbuild)
+        if: runner.os == 'Linux'
+        working-directory: crates/webadeva-lint
+        run: cargo zigbuild --release --locked --lib --no-default-features --features "$ADDON_FEATURES" --target ${{ matrix.target }}${{ matrix.zig }}
+
+      - name: Build
+        if: runner.os != 'Linux'
+        working-directory: crates/webadeva-lint
+        run: cargo build --release --locked --lib --no-default-features --features "$ADDON_FEATURES" --target ${{ matrix.target }}
+
+      - name: Stage add-on
+        run: |
+          set -euo pipefail
+          mkdir -p "dist/${{ matrix.platform }}"
+          cp "crates/webadeva-lint/target/${{ matrix.target }}/release/${{ matrix.lib }}" "dist/${{ matrix.platform }}/webadeva.node"
+
+      # Only where the runner can load the target.
+      - name: Check the add-on loads
+        if: matrix.platform == 'linux-x64-gnu' || matrix.platform == 'darwin-arm64' || matrix.platform == 'win32-x64'
+        run: node -e "const n = require(require('node:path').resolve(process.argv[1])); const c = n.rules().length; console.log(c + ' rules'); if (!c) process.exit(1)" "dist/${{ matrix.platform }}/webadeva.node"
+
+      - name: Upload add-on
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.platform }}
+          path: dist/${{ matrix.platform }}/webadeva.node
+          if-no-files-found: error
+
+  publish:
+    needs: [version, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    env:
+      NEW: ${{ needs.version.outputs.new }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      # trusted publishing (OIDC) needs npm >= 11.5.1
+      - name: Update npm
+        run: npm install -g npm@latest && npm --version
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # One directory per platform: npm/artifacts/<platform>/webadeva.node
+      - name: Download add-ons
+        uses: actions/download-artifact@v4
+        with:
+          path: npm/artifacts
+
+      - name: Bump versions
+        run: |
+          set -euo pipefail
+          node .github/scripts/set-version.mjs "$NEW"
+          pnpm exec oxfmt -c presets/oxfmt.json package.json
+
+      # The test job already ran `pnpm check` on this commit, so publishing
+      # skips the lifecycle scripts (which would rebuild the add-on) and only
+      # regenerates the presets it ships.
+      - name: Build presets and platform packages
+        run: |
+          set -euo pipefail
+          pnpm build:presets
+          pnpm build:packages
+
+      # Platform packages first, so the main package never points at missing
+      # versions. Trusted publishing adds provenance automatically.
+      - name: Publish
+        run: |
+          set -euo pipefail
+          publish() {
+            local name
+            name=$(node -p "require('./package.json').name")
+            if npm view "$name@$NEW" version >/dev/null 2>&1; then
+              echo "$name@$NEW already published, skipping"
+            else
+              npm publish --access public --ignore-scripts
+            fi
+          }
+          for dir in npm/dist/*/; do (cd "$dir" && publish); done
+          publish
+
+      - name: Commit and tag
+        env:
+          # Skip the local git hooks: the pre-push hook refuses pushes to main.
+          HUSKY: 0
+        run: |
+          set -euo pipefail
+          # The pins are written at publish time only; the repo's lockfile
+          # does not list the platform packages.
+          npm pkg delete optionalDependencies
+          pnpm exec oxfmt -c presets/oxfmt.json package.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json crates/webadeva-lint/Cargo.toml crates/webadeva-lint/Cargo.lock
+          git commit -m "chore(release): v$NEW [skip ci]"
+          git pull --rebase --autostash origin main
+          git tag "v$NEW"
+          git push origin main
+          git push origin "v$NEW"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p release-assets
+          for dir in npm/artifacts/*/; do
+            platform=$(basename "$dir")
+            cp "${dir}webadeva.node" "release-assets/webadeva-$platform.node"
+          done
+          gh release create "v$NEW" --generate-notes release-assets/*

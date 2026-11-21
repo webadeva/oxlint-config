@@ -1,0 +1,130 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  # The rule groups the Node add-on ships with (see package.json build:native).
+  ADDON_FEATURES: napi,core,react_dom,react_components,storybook
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # commitlint needs the PR's commit range, not a shallow clone.
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: crates/webadeva-lint
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint commit messages
+        run: pnpm exec commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+      - name: Self-test the version bump script
+        run: node .github/scripts/next-version.mjs --self-test
+
+      - name: cargo fmt
+        run: cargo fmt --manifest-path crates/webadeva-lint/Cargo.toml --check
+
+      # Default features: the rules, the parity-test harness and the tests.
+      - name: cargo clippy
+        run: cargo clippy --manifest-path crates/webadeva-lint/Cargo.toml --all-targets --locked -- -D warnings
+
+      # The Node add-on, exactly as it ships.
+      - name: cargo clippy (add-on)
+        run: cargo clippy --manifest-path crates/webadeva-lint/Cargo.toml --lib --locked --no-default-features --features "$ADDON_FEATURES" -- -D warnings
+
+      - name: cargo test
+        run: pnpm test:rust
+
+      # Presets, and the add-on into native/webadeva.node.
+      - name: Build
+        run: pnpm build
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Node tests
+        run: node --test "test/**/*.test.mjs"
+
+      - name: Format check
+        run: pnpm format:check
+
+  # Packs the main package and this runner's platform package (the add-on),
+  # installs them with npm and pnpm next to oxlint and oxlint-tsgolint, and
+  # runs plain `oxlint` and `oxlint --fix` with every preset. Covers loading
+  # the add-on on every OS and the oldest Node versions in `engines`
+  # (^20.19.0 || >=22.12.0).
+  smoke:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, windows-latest]
+        node: ["20.19", "22.12"]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node 24 (build)
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: crates/webadeva-lint
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build presets and add-on
+        run: pnpm build
+
+      - name: Setup Node ${{ matrix.node }} (runtime)
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+
+      # pnpm is skipped where it cannot run on the runtime Node.
+      - name: Smoke test the packed packages
+        run: node .github/scripts/smoke-test.mjs

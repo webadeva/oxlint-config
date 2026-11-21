@@ -1,0 +1,86 @@
+{
+  "name": "@webadeva/oxlint-config",
+  "version": "0.1.0",
+  "description": "Oxlint presets for TypeScript projects ported from @webadeva/eslint-config, plus an oxlint add-on with the rules oxlint lacks (implemented in Rust): React, Next.js, Storybook, and oxfmt formatting.",
+  "keywords": [
+    "a11y",
+    "lint",
+    "nextjs",
+    "oxc",
+    "oxlint",
+    "oxlint-config",
+    "react",
+    "storybook",
+    "tsgolint",
+    "typescript",
+    "oxfmt",
+    "rust"
+  ],
+  "homepage": "https://github.com/webadeva/oxlint-config#readme",
+  "bugs": {
+    "url": "https://github.com/webadeva/oxlint-config/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Gobind Singh",
+    "email": "thesinghgobind@gmail.com",
+    "url": "https://www.thegobindsingh.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webadeva/oxlint-config.git"
+  },
+  "files": [
+    "presets",
+    "plugins"
+  ],
+  "type": "module",
+  "exports": {
+    "./presets/*.json": "./presets/*.json",
+    "./plugins/*.mjs": "./plugins/*.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build:presets": "node scripts/build-presets.mjs && oxfmt -c presets/oxfmt.json presets && cp presets/oxfmt.json .oxfmtrc.json",
+    "build:native": "cargo build --release --lib --no-default-features --features napi,core,react_dom,react_components,storybook --manifest-path crates/webadeva-lint/Cargo.toml && node scripts/copy-native.mjs",
+    "build": "pnpm build:presets && pnpm build:native",
+    "build:packages": "node npm/scripts/build-packages.mjs",
+    "lint": "oxlint --disable-nested-config",
+    "lint:fix": "oxlint --disable-nested-config --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "test:rust": "cargo test --manifest-path crates/webadeva-lint/Cargo.toml",
+    "test": "pnpm test:rust && node --test \"test/**/*.test.mjs\"",
+    "check": "pnpm build && pnpm lint && pnpm test",
+    "prepare": "husky",
+    "prepublishOnly": "pnpm check"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@types/node": "^26.6.5",
+    "@types/react": "19.3.0",
+    "husky": "^9.1.7",
+    "oxfmt": "^0.79.0",
+    "oxlint": "^1.94.0",
+    "oxlint-tsgolint": "^7.0.2007",
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "oxfmt": ">=0.79.0",
+    "oxlint": ">=1.94.0",
+    "oxlint-tsgolint": ">=7.0.2007"
+  },
+  "peerDependenciesMeta": {
+    "oxfmt": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "packageManager": "pnpm@12.14.0"
+}

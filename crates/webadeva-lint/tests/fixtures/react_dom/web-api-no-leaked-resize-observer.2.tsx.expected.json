@@ -1,0 +1,26 @@
+[
+ {
+  "rule": "@eslint-react/web-api-no-leaked-resize-observer",
+  "line": 7,
+  "column": 5,
+  "endLine": 7,
+  "endColumn": 29,
+  "message": "A 'ResizeObserver' instance created in 'useEffect' must be disconnected in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-resize-observer",
+  "line": 22,
+  "column": 5,
+  "endLine": 22,
+  "endColumn": 19,
+  "message": "A 'ResizeObserver' instance created in 'useEffect' must be disconnected in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-resize-observer",
+  "line": 23,
+  "column": 5,
+  "endLine": 23,
+  "endColumn": 19,
+  "message": "A 'ResizeObserver' instance created in 'useEffect' must be disconnected in the cleanup function."
+ }
+]

@@ -1,0 +1,42 @@
+[
+ {
+  "rule": "@eslint-react/jsx-no-leaked-dollar",
+  "line": 2,
+  "column": 23,
+  "endLine": 2,
+  "endColumn": 24,
+  "message": "Leaked '$' in JSX. This '$' will be rendered as text nodes."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-leaked-dollar",
+  "line": 3,
+  "column": 13,
+  "endLine": 3,
+  "endColumn": 14,
+  "message": "Leaked '$' in JSX. This '$' will be rendered as text nodes."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-leaked-dollar",
+  "line": 3,
+  "column": 22,
+  "endLine": 3,
+  "endColumn": 23,
+  "message": "Leaked '$' in JSX. This '$' will be rendered as text nodes."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-leaked-dollar",
+  "line": 11,
+  "column": 21,
+  "endLine": 11,
+  "endColumn": 22,
+  "message": "Leaked '$' in JSX. This '$' will be rendered as text nodes."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-leaked-dollar",
+  "line": 13,
+  "column": 17,
+  "endLine": 13,
+  "endColumn": 18,
+  "message": "Leaked '$' in JSX. This '$' will be rendered as text nodes."
+ }
+]

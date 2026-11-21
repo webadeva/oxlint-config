@@ -1,0 +1,25 @@
+import React, { createElement } from "react";
+
+const a = <div children="Children" />;
+const b = <div children={<div />} />;
+const c = <div children={[<div key="1" />, <div key="2" />]} />;
+const d = <div children="Children">Children</div>;
+const e = <MyComponent children="Children" />;
+const f = React.createElement("div", { children: "Children" });
+const g = React.createElement("div", { children: "Children" }, "Children");
+const h = createElement("div", { "children": "x" });
+const i = React.createElement(MyComponent, { ["children"]: "x" });
+const props = { children: <span /> };
+const j = <div {...props} />;
+const k = <div {...props}>text</div>;
+const l = <div {...{ ...props }} />;
+const m = <div>Children</div>;
+const n = <MyComponent>{children}</MyComponent>;
+const o = React.createElement("div", {}, "Children");
+const p = <div children />;
+const q = <div children={undefined}>   </div>;
+const r = <div children="x">{""}{/* c */}</div>;
+const s = document.createElement("div", { children: "x" });
+const t = React.createElement("div", { [children]: "x" });
+const u = React.createElement("div", { [`children`]: "x" }, a);
+const v = <div {...{ ["chil" + "dren"]: 1 }}>x</div>;

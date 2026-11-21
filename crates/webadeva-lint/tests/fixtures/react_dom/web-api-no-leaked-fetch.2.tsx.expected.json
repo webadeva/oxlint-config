@@ -1,0 +1,10 @@
+[
+ {
+  "rule": "@eslint-react/web-api-no-leaked-fetch",
+  "line": 16,
+  "column": 5,
+  "endLine": 16,
+  "endColumn": 22,
+  "message": "A 'fetch' must be provided with an 'AbortController' for proper cleanup."
+ }
+]

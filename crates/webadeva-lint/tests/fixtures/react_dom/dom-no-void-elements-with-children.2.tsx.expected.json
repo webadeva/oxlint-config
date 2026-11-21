@@ -1,0 +1,34 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-void-elements-with-children",
+  "line": 1,
+  "column": 11,
+  "endLine": 1,
+  "endColumn": 28,
+  "message": "'img' is a void element tag and must not have children."
+ },
+ {
+  "rule": "@eslint-react/dom-no-void-elements-with-children",
+  "line": 3,
+  "column": 11,
+  "endLine": 3,
+  "endColumn": 32,
+  "message": "'area' is a void element tag and must not have children."
+ },
+ {
+  "rule": "@eslint-react/dom-no-void-elements-with-children",
+  "line": 4,
+  "column": 11,
+  "endLine": 4,
+  "endColumn": 32,
+  "message": "'link' is a void element tag and must not have children."
+ },
+ {
+  "rule": "@eslint-react/dom-no-void-elements-with-children",
+  "line": 6,
+  "column": 11,
+  "endLine": 6,
+  "endColumn": 56,
+  "message": "'source' is a void element tag and must not have children."
+ }
+]

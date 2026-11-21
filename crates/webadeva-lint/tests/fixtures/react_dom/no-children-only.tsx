@@ -1,0 +1,12 @@
+import React, { Children } from "react";
+import * as R from "react";
+const a = Children.only(children);
+const b = React.Children.only(children);
+const c = R.Children.only(children);
+const d = (Children as any).only(children);
+const e = Children?.only(children);
+const f = Children["only"](children);
+const g = Foo.only(children);
+const h = Children.only;
+const i = this.Children.only(x);
+const j = foo().Children.only(x);

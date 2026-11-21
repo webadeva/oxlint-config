@@ -1,0 +1,50 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-unsafe-iframe-sandbox",
+  "line": 1,
+  "column": 27,
+  "endLine": 1,
+  "endColumn": 60,
+  "message": "Unsafe 'sandbox' attribute value on 'iframe' component."
+ },
+ {
+  "rule": "@eslint-react/dom-no-unsafe-iframe-sandbox",
+  "line": 2,
+  "column": 28,
+  "endLine": 2,
+  "endColumn": 61,
+  "message": "Unsafe 'sandbox' attribute value on 'iframe' component."
+ },
+ {
+  "rule": "@eslint-react/dom-no-unsafe-iframe-sandbox",
+  "line": 5,
+  "column": 38,
+  "endLine": 5,
+  "endColumn": 71,
+  "message": "Unsafe 'sandbox' attribute value on 'iframe' component."
+ },
+ {
+  "rule": "@eslint-react/dom-no-unsafe-iframe-sandbox",
+  "line": 6,
+  "column": 38,
+  "endLine": 6,
+  "endColumn": 71,
+  "message": "Unsafe 'sandbox' attribute value on 'iframe' component."
+ },
+ {
+  "rule": "@eslint-react/dom-no-unsafe-iframe-sandbox",
+  "line": 9,
+  "column": 23,
+  "endLine": 9,
+  "endColumn": 28,
+  "message": "Unsafe 'sandbox' attribute value on 'iframe' component."
+ },
+ {
+  "rule": "@eslint-react/dom-no-unsafe-iframe-sandbox",
+  "line": 12,
+  "column": 28,
+  "endLine": 12,
+  "endColumn": 29,
+  "message": "Unsafe 'sandbox' attribute value on 'iframe' component."
+ }
+]

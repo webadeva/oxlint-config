@@ -1,0 +1,1 @@
+{ "include": ["src/**/*.ts", "lib", "one/?.cts", "*.tsx"], "exclude": ["src/skip", "**/*.spec.ts"], "files": ["extra/listed.ts"] }

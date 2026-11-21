@@ -1,0 +1,26 @@
+[
+ {
+  "rule": "@eslint-react/jsx-no-namespace",
+  "line": 1,
+  "column": 12,
+  "endLine": 1,
+  "endColumn": 28,
+  "message": "A React component 'ns:testcomponent' must not be in a namespace, as React does not support them."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-namespace",
+  "line": 2,
+  "column": 12,
+  "endLine": 2,
+  "endColumn": 28,
+  "message": "A React component 'Ns:TestComponent' must not be in a namespace, as React does not support them."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-namespace",
+  "line": 3,
+  "column": 12,
+  "endLine": 3,
+  "endColumn": 20,
+  "message": "A React component 'svg:path' must not be in a namespace, as React does not support them."
+ }
+]

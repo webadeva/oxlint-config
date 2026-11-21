@@ -1,0 +1,66 @@
+[
+ {
+  "rule": "@eslint-react/no-children-only",
+  "line": 3,
+  "column": 20,
+  "endLine": 3,
+  "endColumn": 24,
+  "message": "Using 'Children.only' is uncommon and can lead to fragile code. Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/no-children-only",
+  "line": 4,
+  "column": 26,
+  "endLine": 4,
+  "endColumn": 30,
+  "message": "Using 'Children.only' is uncommon and can lead to fragile code. Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/no-children-only",
+  "line": 5,
+  "column": 22,
+  "endLine": 5,
+  "endColumn": 26,
+  "message": "Using 'Children.only' is uncommon and can lead to fragile code. Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/no-children-only",
+  "line": 6,
+  "column": 29,
+  "endLine": 6,
+  "endColumn": 33,
+  "message": "Using 'Children.only' is uncommon and can lead to fragile code. Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/no-children-only",
+  "line": 7,
+  "column": 21,
+  "endLine": 7,
+  "endColumn": 25,
+  "message": "Using 'Children.only' is uncommon and can lead to fragile code. Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/no-children-only",
+  "line": 10,
+  "column": 20,
+  "endLine": 10,
+  "endColumn": 24,
+  "message": "Using 'Children.only' is uncommon and can lead to fragile code. Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/no-children-only",
+  "line": 11,
+  "column": 25,
+  "endLine": 11,
+  "endColumn": 29,
+  "message": "Using 'Children.only' is uncommon and can lead to fragile code. Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/no-children-only",
+  "line": 12,
+  "column": 26,
+  "endLine": 12,
+  "endColumn": 30,
+  "message": "Using 'Children.only' is uncommon and can lead to fragile code. Use alternatives instead."
+ }
+]

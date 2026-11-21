@@ -1,0 +1,18 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-hydrate",
+  "line": 2,
+  "column": 1,
+  "endLine": 2,
+  "endColumn": 50,
+  "message": "[Deprecated] Use 'hydrateRoot()' instead."
+ },
+ {
+  "rule": "@eslint-react/dom-no-hydrate",
+  "line": 3,
+  "column": 1,
+  "endLine": 3,
+  "endColumn": 32,
+  "message": "[Deprecated] Use 'hydrateRoot()' instead."
+ }
+]

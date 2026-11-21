@@ -1,0 +1,42 @@
+[
+ {
+  "rule": "@eslint-react/web-api-no-leaked-intersection-observer",
+  "line": 5,
+  "column": 5,
+  "endLine": 5,
+  "endColumn": 39,
+  "message": "An 'IntersectionObserver' instance created in component or custom hook must be assigned to a variable for proper cleanup."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-intersection-observer",
+  "line": 14,
+  "column": 5,
+  "endLine": 14,
+  "endColumn": 34,
+  "message": "An 'IntersectionObserver' instance created in 'useEffect' must be disconnected in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-intersection-observer",
+  "line": 44,
+  "column": 22,
+  "endLine": 44,
+  "endColumn": 56,
+  "message": "Dynamically added 'IntersectionObserver.observe' should be cleared all at once using 'IntersectionObserver.disconnect' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-intersection-observer",
+  "line": 56,
+  "column": 22,
+  "endLine": 56,
+  "endColumn": 56,
+  "message": "Dynamically added 'IntersectionObserver.observe' should be cleared all at once using 'IntersectionObserver.disconnect' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-intersection-observer",
+  "line": 75,
+  "column": 5,
+  "endLine": 75,
+  "endColumn": 36,
+  "message": "An 'IntersectionObserver' instance created in 'useEffect' must be disconnected in the cleanup function."
+ }
+]

@@ -1,0 +1,12 @@
+import React, { Children } from "react";
+import * as R from "react";
+const a = Children.toArray(children);
+const b = React.Children.toArray(children);
+const c = R.Children.toArray(children);
+const d = (Children as any).toArray(children);
+const e = Children?.toArray(children);
+const f = Children["toArray"](children);
+const g = Foo.toArray(children);
+const h = Children.toArray;
+const i = this.Children.toArray(x);
+const j = foo().Children.toArray(x);

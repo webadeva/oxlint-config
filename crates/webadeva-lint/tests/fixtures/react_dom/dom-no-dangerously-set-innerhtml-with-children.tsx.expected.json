@@ -1,0 +1,42 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-dangerously-set-innerhtml-with-children",
+  "line": 1,
+  "column": 58,
+  "endLine": 1,
+  "endColumn": 66,
+  "message": "A DOM component cannot use both children and 'dangerouslySetInnerHTML'."
+ },
+ {
+  "rule": "@eslint-react/dom-no-dangerously-set-innerhtml-with-children",
+  "line": 2,
+  "column": 58,
+  "endLine": 2,
+  "endColumn": 70,
+  "message": "A DOM component cannot use both children and 'dangerouslySetInnerHTML'."
+ },
+ {
+  "rule": "@eslint-react/dom-no-dangerously-set-innerhtml-with-children",
+  "line": 7,
+  "column": 58,
+  "endLine": 7,
+  "endColumn": 59,
+  "message": "A DOM component cannot use both children and 'dangerouslySetInnerHTML'."
+ },
+ {
+  "rule": "@eslint-react/dom-no-dangerously-set-innerhtml-with-children",
+  "line": 10,
+  "column": 16,
+  "endLine": 10,
+  "endColumn": 26,
+  "message": "A DOM component cannot use both children and 'dangerouslySetInnerHTML'."
+ },
+ {
+  "rule": "@eslint-react/dom-no-dangerously-set-innerhtml-with-children",
+  "line": 13,
+  "column": 5,
+  "endLine": 13,
+  "endColumn": 13,
+  "message": "A DOM component cannot use both children and 'dangerouslySetInnerHTML'."
+ }
+]

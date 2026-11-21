@@ -1,0 +1,26 @@
+[
+ {
+  "rule": "@eslint-react/jsx-no-children-prop",
+  "line": 1,
+  "column": 16,
+  "endLine": 1,
+  "endColumn": 28,
+  "message": "Do not pass 'children' as props."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-children-prop",
+  "line": 2,
+  "column": 16,
+  "endLine": 2,
+  "endColumn": 35,
+  "message": "Do not pass 'children' as props."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-children-prop",
+  "line": 3,
+  "column": 40,
+  "endLine": 3,
+  "endColumn": 53,
+  "message": "Do not pass 'children' as props."
+ }
+]

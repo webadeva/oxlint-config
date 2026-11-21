@@ -1,0 +1,8 @@
+{
+  "@eslint-react/dom-no-render": "error",
+  "@eslint-react/dom-no-hydrate": "error",
+  "@eslint-react/dom-no-use-form-state": "error",
+  "@eslint-react/dom-no-unknown-property": "error",
+  "@eslint-react/dom-no-render-return-value": "error",
+  "@eslint-react/jsx-no-children-prop": "error"
+}

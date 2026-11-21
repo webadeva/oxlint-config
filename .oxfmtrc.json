@@ -1,0 +1,16 @@
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": false,
+  "bracketSpacing": true,
+  "sortPackageJson": false,
+  "sortImports": {
+    "ignoreCase": true,
+    "newlinesBetween": false,
+    "groups": [
+      ["builtin", "external", "internal", "unknown"],
+      ["parent", "sibling", "index"]
+    ]
+  }
+}

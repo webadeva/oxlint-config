@@ -1,0 +1,18 @@
+[
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 31,
+  "column": 5,
+  "endLine": 31,
+  "endColumn": 38,
+  "message": "An 'addEventListener' in 'useEffect' should have a corresponding 'removeEventListener' in its cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 37,
+  "column": 5,
+  "endLine": 37,
+  "endColumn": 59,
+  "message": "An 'addEventListener' in 'useEffect' should have a corresponding 'removeEventListener' in its cleanup function."
+ }
+]

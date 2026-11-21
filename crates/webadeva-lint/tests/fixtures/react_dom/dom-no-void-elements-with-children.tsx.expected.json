@@ -1,0 +1,50 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-void-elements-with-children",
+  "line": 1,
+  "column": 11,
+  "endLine": 1,
+  "endColumn": 28,
+  "message": "'br' is a void element tag and must not have children."
+ },
+ {
+  "rule": "@eslint-react/dom-no-void-elements-with-children",
+  "line": 2,
+  "column": 11,
+  "endLine": 2,
+  "endColumn": 37,
+  "message": "'br' is a void element tag and must not have children."
+ },
+ {
+  "rule": "@eslint-react/dom-no-void-elements-with-children",
+  "line": 3,
+  "column": 11,
+  "endLine": 3,
+  "endColumn": 60,
+  "message": "'img' is a void element tag and must not have children."
+ },
+ {
+  "rule": "@eslint-react/dom-no-void-elements-with-children",
+  "line": 4,
+  "column": 11,
+  "endLine": 4,
+  "endColumn": 21,
+  "message": "'hr' is a void element tag and must not have children."
+ },
+ {
+  "rule": "@eslint-react/dom-no-void-elements-with-children",
+  "line": 7,
+  "column": 11,
+  "endLine": 7,
+  "endColumn": 34,
+  "message": "'input' is a void element tag and must not have children."
+ },
+ {
+  "rule": "@eslint-react/dom-no-void-elements-with-children",
+  "line": 10,
+  "column": 11,
+  "endLine": 10,
+  "endColumn": 31,
+  "message": "'input' is a void element tag and must not have children."
+ }
+]

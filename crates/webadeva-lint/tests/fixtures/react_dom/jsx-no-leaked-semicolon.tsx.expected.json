@@ -1,0 +1,26 @@
+[
+ {
+  "rule": "@eslint-react/jsx-no-leaked-semicolon",
+  "line": 3,
+  "column": 13,
+  "endLine": 4,
+  "endColumn": 3,
+  "message": "Leaked ';' in JSX. This ';' will be rendered as text nodes."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-leaked-semicolon",
+  "line": 8,
+  "column": 8,
+  "endLine": 9,
+  "endColumn": 5,
+  "message": "Leaked ';' in JSX. This ';' will be rendered as text nodes."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-leaked-semicolon",
+  "line": 21,
+  "column": 10,
+  "endLine": 22,
+  "endColumn": 3,
+  "message": "Leaked ';' in JSX. This ';' will be rendered as text nodes."
+ }
+]

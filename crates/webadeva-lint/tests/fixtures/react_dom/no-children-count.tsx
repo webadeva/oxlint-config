@@ -1,0 +1,12 @@
+import React, { Children } from "react";
+import * as R from "react";
+const a = Children.count(children);
+const b = React.Children.count(children);
+const c = R.Children.count(children);
+const d = (Children as any).count(children);
+const e = Children?.count(children);
+const f = Children["count"](children);
+const g = Foo.count(children);
+const h = Children.count;
+const i = this.Children.count(x);
+const j = foo().Children.count(x);

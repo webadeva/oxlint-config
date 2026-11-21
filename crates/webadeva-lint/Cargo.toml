@@ -1,0 +1,59 @@
+[package]
+name = "webadeva-lint"
+version = "0.1.0"
+edition = "2024"
+description = "Rules of @webadeva/oxlint-config that oxlint lacks, as a native Node add-on loaded by an oxlint JS plugin"
+license = "MIT"
+repository = "https://github.com/webadeva/oxlint-config"
+# Shipped through npm (npm/scripts/build-packages.mjs), not crates.io. The
+# release workflow sets `version` to the npm version before building.
+publish = false
+
+[lib]
+name = "webadeva_lint"
+# cdylib: the Node add-on (`napi` feature). rlib: the test harness binary.
+crate-type = ["cdylib", "rlib"]
+
+# Internal harness that runs the rules over files the way ESLint would
+# (incl. its 10-pass --fix loop), used by the parity tests. Not shipped.
+[[bin]]
+name = "webadeva-lint"
+path = "src/main.rs"
+required-features = ["cli"]
+
+[dependencies]
+globset = { version = "0.4.21", optional = true }
+ignore = { version = "0.4.34", optional = true }
+json_comments = "0.2.2"
+napi = { version = "3.16", default-features = false, features = ["napi4", "serde-json"], optional = true }
+napi-derive = { version = "3.7", optional = true }
+oxc_allocator = "0.159"
+oxc_ast = "0.159"
+oxc_ast_visit = "0.159"
+oxc_parser = "0.159"
+oxc_semantic = "0.159"
+oxc_span = "0.159"
+oxc_syntax = "0.159"
+rayon = { version = "1.12.0", optional = true }
+regex = { version = "1.13", optional = true }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+
+[build-dependencies]
+napi-build = "2.6"
+
+[features]
+default = ["core", "react_dom", "react_components", "storybook", "cli"]
+# The Node add-on oxlint loads through the JS plugin.
+napi = ["dep:napi", "dep:napi-derive"]
+# The parity-test harness binary.
+cli = ["dep:globset", "dep:ignore", "dep:rayon"]
+core = ["dep:regex"]
+react_dom = []
+react_components = []
+storybook = ["dep:regex"]
+
+[profile.release]
+lto = "thin"
+codegen-units = 4
+strip = true

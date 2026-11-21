@@ -1,0 +1,2 @@
+flushSync(() => {});
+ReactDOM.flushSync(() => {});

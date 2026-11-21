@@ -1,0 +1,16 @@
+{
+  "//": "Types the repo's dev-time JS (scripts, tests, CI helpers, the npm launcher) for type-aware lint rules.",
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "types": ["node"],
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    "skipLibCheck": true
+  },
+  "include": ["scripts", "test", "npm", "plugins", ".github/scripts"],
+  "exclude": ["npm/artifacts", "npm/dist"]
+}

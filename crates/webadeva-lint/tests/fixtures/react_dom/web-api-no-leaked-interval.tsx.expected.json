@@ -1,0 +1,58 @@
+[
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 5,
+  "column": 5,
+  "endLine": 5,
+  "endColumn": 32,
+  "message": "A 'setInterval' must be assigned to a variable for proper cleanup."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 12,
+  "column": 16,
+  "endLine": 12,
+  "endColumn": 43,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 51,
+  "column": 17,
+  "endLine": 51,
+  "endColumn": 44,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 64,
+  "column": 17,
+  "endLine": 64,
+  "endColumn": 42,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 66,
+  "column": 12,
+  "endLine": 66,
+  "endColumn": 36,
+  "message": "A 'setInterval' must be assigned to a variable for proper cleanup."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 73,
+  "column": 16,
+  "endLine": 73,
+  "endColumn": 40,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 80,
+  "column": 16,
+  "endLine": 80,
+  "endColumn": 40,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ }
+]

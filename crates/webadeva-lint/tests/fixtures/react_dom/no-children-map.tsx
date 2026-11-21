@@ -1,0 +1,12 @@
+import React, { Children } from "react";
+import * as R from "react";
+const a = Children.map(children);
+const b = React.Children.map(children);
+const c = R.Children.map(children);
+const d = (Children as any).map(children);
+const e = Children?.map(children);
+const f = Children["map"](children);
+const g = Foo.map(children);
+const h = Children.map;
+const i = this.Children.map(x);
+const j = foo().Children.map(x);

@@ -1,0 +1,10 @@
+import { flushSync } from "react-dom";
+import * as ReactDOM from "react-dom";
+import RD from "react-dom/client";
+import { flushSync as fs } from "react-dom";
+flushSync(() => {});
+ReactDOM.flushSync(() => {});
+RD.flushSync(() => {});
+fs(() => {});
+other.flushSync(() => {});
+React.flushSync(() => {});

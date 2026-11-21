@@ -1,0 +1,12 @@
+import React, { Children } from "react";
+import * as R from "react";
+const a = Children.forEach(children);
+const b = React.Children.forEach(children);
+const c = R.Children.forEach(children);
+const d = (Children as any).forEach(children);
+const e = Children?.forEach(children);
+const f = Children["forEach"](children);
+const g = Foo.forEach(children);
+const h = Children.forEach;
+const i = this.Children.forEach(x);
+const j = foo().Children.forEach(x);

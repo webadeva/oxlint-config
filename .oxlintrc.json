@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": ["./presets/base.json"],
+  "ignorePatterns": [
+    "**/__tests__/**",
+    "**/__mocks__/**",
+    "dist",
+    "*.config.*",
+    "node_modules/**/*.*",
+    "dist/**/*.*",
+    "!.storybook",
+    "!**/.storybook/**",
+    "crates/**/target/**",
+    "crates/**/tests/fixtures/**",
+    "npm/artifacts/**",
+    "npm/dist/**"
+  ],
+  "overrides": [
+    {
+      "files": [".github/scripts/**", "scripts/**", "npm/scripts/**"],
+      "rules": {
+        "no-console": "off"
+      }
+    },
+    {
+      "files": ["test/**/*.mjs"],
+      "rules": {
+        "typescript/no-floating-promises": [
+          "error",
+          {
+            "allowForKnownSafeCalls": [
+              {
+                "from": "package",
+                "package": "node:test",
+                "name": ["describe", "it"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["scripts/preset-rules.mjs"],
+      "rules": {
+        "webadeva/max-lines": "off",
+        "webadeva/max-lines-warning": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-unknown-property",
+  "line": 1,
+  "column": 30,
+  "endLine": 1,
+  "endColumn": 42,
+  "message": "React does not recognize data-* props with uppercase characters on a DOM element. Found 'data-Foo', use 'data-foo' instead"
+ }
+]

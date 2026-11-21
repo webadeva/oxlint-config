@@ -1,0 +1,26 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-unknown-property",
+  "line": 4,
+  "column": 39,
+  "endLine": 4,
+  "endColumn": 53,
+  "message": "Unknown property 'class-name' found"
+ },
+ {
+  "rule": "@eslint-react/dom-no-unknown-property",
+  "line": 8,
+  "column": 51,
+  "endLine": 8,
+  "endColumn": 61,
+  "message": "Unknown property 'CLASS' found"
+ },
+ {
+  "rule": "@eslint-react/dom-no-unknown-property",
+  "line": 9,
+  "column": 16,
+  "endLine": 9,
+  "endColumn": 32,
+  "message": "Unknown property 'unknownThing' found"
+ }
+]

@@ -1,0 +1,10 @@
+import ReactDOM, { findDOMNode as fdn } from "react-dom";
+import * as RD from "react-dom";
+findDOMNode(this);
+fdn(this);
+ReactDOM.findDOMNode(this);
+React.findDOMNode(this);
+RD.findDOMNode(this);
+other.findDOMNode(this);
+(ReactDOM as any).findDOMNode(this);
+const el = findDOMNode(this) as HTMLElement;

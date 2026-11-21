@@ -1,0 +1,130 @@
+[
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 3,
+  "column": 12,
+  "endLine": 3,
+  "endColumn": 19,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 3,
+  "column": 21,
+  "endLine": 3,
+  "endColumn": 28,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 5,
+  "column": 31,
+  "endLine": 5,
+  "endColumn": 38,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 7,
+  "column": 40,
+  "endLine": 7,
+  "endColumn": 47,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 8,
+  "column": 46,
+  "endLine": 8,
+  "endColumn": 53,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 9,
+  "column": 39,
+  "endLine": 9,
+  "endColumn": 46,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 11,
+  "column": 31,
+  "endLine": 11,
+  "endColumn": 42,
+  "message": "Use fragment component instead of '<>' because it does not support `key`."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 12,
+  "column": 39,
+  "endLine": 12,
+  "endColumn": 46,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 13,
+  "column": 39,
+  "endLine": 13,
+  "endColumn": 46,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 17,
+  "column": 17,
+  "endLine": 17,
+  "endColumn": 24,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 25,
+  "column": 32,
+  "endLine": 25,
+  "endColumn": 39,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 27,
+  "column": 32,
+  "endLine": 27,
+  "endColumn": 39,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 28,
+  "column": 22,
+  "endLine": 28,
+  "endColumn": 29,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 29,
+  "column": 32,
+  "endLine": 29,
+  "endColumn": 39,
+  "message": "Missing 'key' for element when rendering list."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 31,
+  "column": 12,
+  "endLine": 31,
+  "endColumn": 17,
+  "message": "Use fragment component instead of '<>' because it does not support `key`."
+ },
+ {
+  "rule": "@eslint-react/no-missing-key",
+  "line": 32,
+  "column": 33,
+  "endLine": 32,
+  "endColumn": 40,
+  "message": "Missing 'key' for element when rendering list."
+ }
+]

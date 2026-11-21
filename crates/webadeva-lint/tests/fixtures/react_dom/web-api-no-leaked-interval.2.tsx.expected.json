@@ -1,0 +1,50 @@
+[
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 10,
+  "column": 15,
+  "endLine": 10,
+  "endColumn": 39,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 14,
+  "column": 16,
+  "endLine": 14,
+  "endColumn": 40,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 18,
+  "column": 21,
+  "endLine": 18,
+  "endColumn": 45,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 19,
+  "column": 24,
+  "endLine": 19,
+  "endColumn": 48,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 24,
+  "column": 18,
+  "endLine": 24,
+  "endColumn": 42,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-interval",
+  "line": 29,
+  "column": 16,
+  "endLine": 29,
+  "endColumn": 40,
+  "message": "A 'setInterval' created in 'useEffect' must be cleared with 'clearInterval' in the cleanup function."
+ }
+]

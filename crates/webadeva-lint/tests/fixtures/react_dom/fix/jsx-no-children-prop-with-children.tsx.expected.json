@@ -1,0 +1,18 @@
+[
+ {
+  "rule": "@eslint-react/jsx-no-children-prop-with-children",
+  "line": 1,
+  "column": 16,
+  "endLine": 1,
+  "endColumn": 28,
+  "message": "Do not pass 'children' as a prop when the element already has children content."
+ },
+ {
+  "rule": "@eslint-react/jsx-no-children-prop-with-children",
+  "line": 2,
+  "column": 40,
+  "endLine": 2,
+  "endColumn": 53,
+  "message": "Do not pass 'children' as a prop when the element already has children content."
+ }
+]

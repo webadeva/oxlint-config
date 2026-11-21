@@ -1,0 +1,34 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-dangerously-set-innerhtml",
+  "line": 1,
+  "column": 16,
+  "endLine": 1,
+  "endColumn": 57,
+  "message": "Using 'dangerouslySetInnerHTML' may have security implications."
+ },
+ {
+  "rule": "@eslint-react/dom-no-dangerously-set-innerhtml",
+  "line": 2,
+  "column": 16,
+  "endLine": 2,
+  "endColumn": 57,
+  "message": "Using 'dangerouslySetInnerHTML' may have security implications."
+ },
+ {
+  "rule": "@eslint-react/dom-no-dangerously-set-innerhtml",
+  "line": 4,
+  "column": 16,
+  "endLine": 4,
+  "endColumn": 26,
+  "message": "Using 'dangerouslySetInnerHTML' may have security implications."
+ },
+ {
+  "rule": "@eslint-react/dom-no-dangerously-set-innerhtml",
+  "line": 5,
+  "column": 16,
+  "endLine": 5,
+  "endColumn": 39,
+  "message": "Using 'dangerouslySetInnerHTML' may have security implications."
+ }
+]

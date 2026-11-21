@@ -1,0 +1,1 @@
+1:1 storybook/story-exports The file should have at least one story export

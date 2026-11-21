@@ -1,0 +1,15 @@
+const a = <a href="javascript:void(0)">x</a>;
+const b = <a href="JAVASCRIPT:alert(1)">x</a>;
+const c = <a href={"javascript:alert(1)"}>x</a>;
+const d = <a href={`javascript:alert(1)`}>x</a>;
+const url = "javascript:alert(1)";
+const e = <Foo to={url} />;
+const f = <a href=" javascript:alert(1)">x</a>;
+const g = <a href="java	script:alert(1)">x</a>;
+const h = <a href="https://example.com">x</a>;
+const i = <a href={x}>x</a>;
+const j = <a xlink:href="javascript:void(0)">x</a>;
+const k = <a href={"java" + "script:x"}>x</a>;
+const l = <a href={cond ? "javascript:x" : "y"}>x</a>;
+let m = "javascript:x"; m = "y";
+const n = <a href={m}>x</a>;

@@ -1,0 +1,50 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-find-dom-node",
+  "line": 3,
+  "column": 1,
+  "endLine": 3,
+  "endColumn": 18,
+  "message": "[Deprecated] Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/dom-no-find-dom-node",
+  "line": 4,
+  "column": 1,
+  "endLine": 4,
+  "endColumn": 10,
+  "message": "[Deprecated] Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/dom-no-find-dom-node",
+  "line": 5,
+  "column": 1,
+  "endLine": 5,
+  "endColumn": 27,
+  "message": "[Deprecated] Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/dom-no-find-dom-node",
+  "line": 6,
+  "column": 1,
+  "endLine": 6,
+  "endColumn": 24,
+  "message": "[Deprecated] Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/dom-no-find-dom-node",
+  "line": 7,
+  "column": 1,
+  "endLine": 7,
+  "endColumn": 21,
+  "message": "[Deprecated] Use alternatives instead."
+ },
+ {
+  "rule": "@eslint-react/dom-no-find-dom-node",
+  "line": 10,
+  "column": 12,
+  "endLine": 10,
+  "endColumn": 29,
+  "message": "[Deprecated] Use alternatives instead."
+ }
+]

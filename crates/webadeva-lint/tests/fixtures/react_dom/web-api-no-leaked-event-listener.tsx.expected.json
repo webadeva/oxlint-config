@@ -1,0 +1,74 @@
+[
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 5,
+  "column": 5,
+  "endLine": 5,
+  "endColumn": 48,
+  "message": "An 'addEventListener' in 'useEffect' should have a corresponding 'removeEventListener' in its cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 5,
+  "column": 39,
+  "endLine": 5,
+  "endColumn": 47,
+  "message": "A/an 'addEventListener' should not have an inline listener function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 22,
+  "column": 5,
+  "endLine": 22,
+  "endColumn": 48,
+  "message": "An 'addEventListener' in 'useEffect' should have a corresponding 'removeEventListener' in its cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 30,
+  "column": 5,
+  "endLine": 30,
+  "endColumn": 54,
+  "message": "An 'addEventListener' in 'useEffect' should have a corresponding 'removeEventListener' in its cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 76,
+  "column": 5,
+  "endLine": 76,
+  "endColumn": 49,
+  "message": "An 'addEventListener' in 'useEffect' should have a corresponding 'removeEventListener' in its cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 107,
+  "column": 5,
+  "endLine": 107,
+  "endColumn": 47,
+  "message": "An 'addEventListener' in 'useEffect' should have a corresponding 'removeEventListener' in its cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 119,
+  "column": 5,
+  "endLine": 119,
+  "endColumn": 47,
+  "message": "An 'addEventListener' in 'useEffect' should have a corresponding 'removeEventListener' in its cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 128,
+  "column": 5,
+  "endLine": 128,
+  "endColumn": 47,
+  "message": "An 'addEventListener' in 'useLayoutEffect' should have a corresponding 'removeEventListener' in its cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-event-listener",
+  "line": 139,
+  "column": 41,
+  "endLine": 139,
+  "endColumn": 49,
+  "message": "A/an 'removeEventListener' should not have an inline listener function."
+ }
+]

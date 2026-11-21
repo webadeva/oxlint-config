@@ -1,0 +1,10 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-render-return-value",
+  "line": 2,
+  "column": 11,
+  "endLine": 2,
+  "endColumn": 41,
+  "message": "Do not depend on the return value from 'ReactDOM.render'."
+ }
+]

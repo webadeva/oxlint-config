@@ -1,0 +1,50 @@
+[
+ {
+  "rule": "@eslint-react/web-api-no-leaked-timeout",
+  "line": 10,
+  "column": 15,
+  "endLine": 10,
+  "endColumn": 38,
+  "message": "A 'setTimeout' created in 'useEffect' must be cleared with 'clearTimeout' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-timeout",
+  "line": 14,
+  "column": 16,
+  "endLine": 14,
+  "endColumn": 39,
+  "message": "A 'setTimeout' created in 'useEffect' must be cleared with 'clearTimeout' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-timeout",
+  "line": 18,
+  "column": 21,
+  "endLine": 18,
+  "endColumn": 44,
+  "message": "A 'setTimeout' created in 'useEffect' must be cleared with 'clearTimeout' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-timeout",
+  "line": 19,
+  "column": 24,
+  "endLine": 19,
+  "endColumn": 47,
+  "message": "A 'setTimeout' created in 'useEffect' must be cleared with 'clearTimeout' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-timeout",
+  "line": 24,
+  "column": 18,
+  "endLine": 24,
+  "endColumn": 41,
+  "message": "A 'setTimeout' created in 'useEffect' must be cleared with 'clearTimeout' in the cleanup function."
+ },
+ {
+  "rule": "@eslint-react/web-api-no-leaked-timeout",
+  "line": 29,
+  "column": 16,
+  "endLine": 29,
+  "endColumn": 39,
+  "message": "A 'setTimeout' created in 'useEffect' must be cleared with 'clearTimeout' in the cleanup function."
+ }
+]

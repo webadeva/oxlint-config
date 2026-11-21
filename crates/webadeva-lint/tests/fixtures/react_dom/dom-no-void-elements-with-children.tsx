@@ -1,0 +1,11 @@
+const a = <br>Children</br>;
+const b = <br children="Children" />;
+const c = <img dangerouslySetInnerHTML={{ __html: "x" }} />;
+const d = <hr> </hr>;
+const e = <br />;
+const f = <div>Children</div>;
+const g = <Foo as="input">x</Foo>;
+const h = <Foo as="div">x</Foo>;
+const props = { children: "x" };
+const i = <input {...props} />;
+const j = <meta></meta>;

@@ -1,0 +1,18 @@
+[
+ {
+  "rule": "@eslint-react/dom-no-render",
+  "line": 17,
+  "column": 1,
+  "endLine": 17,
+  "endColumn": 16,
+  "message": "[Deprecated] Use 'createRoot(node).render()' instead."
+ },
+ {
+  "rule": "@eslint-react/dom-no-render",
+  "line": 18,
+  "column": 1,
+  "endLine": 18,
+  "endColumn": 16,
+  "message": "[Deprecated] Use 'createRoot(node).render()' instead."
+ }
+]
