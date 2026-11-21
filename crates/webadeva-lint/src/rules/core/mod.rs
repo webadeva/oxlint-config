@@ -1,11 +1,13 @@
 //! Core rules: the config's own `webadeva/*` rules plus ESLint core and
 //! small-plugin rules that oxlint lacks or only approximates.
 
+mod builtin_globals;
 mod camelcase;
 mod getter_return;
 mod max_lines;
 mod no_dupe_args;
 mod no_octal;
+mod no_redeclare;
 mod prefer_arrow_functions;
 mod require_description;
 mod tsconfig;
@@ -25,5 +27,6 @@ pub fn rules() -> Vec<Box<dyn Rule>> {
         Box::new(no_octal::NoOctal),
         Box::new(prefer_arrow_functions::PreferArrowFunctions),
         Box::new(getter_return::GetterReturn),
+        Box::new(no_redeclare::NoRedeclare),
     ]
 }

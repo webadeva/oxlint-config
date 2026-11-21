@@ -153,6 +153,13 @@ try {
         reported("eslint-js(camelcase)"),
         diagnostics,
       );
+      // Both files are in tsconfig.json's include. A path the add-on
+      // mangles (Windows drive letters, once) reports every file instead.
+      check(
+        `${label}: webadeva(typescript-file-in-project) reported a file the tsconfig includes`,
+        !reported("typescript-file-in-project"),
+        diagnostics,
+      );
       if (isReact)
         check(
           `${label}: no add-on @eslint-react(no-missing-key)`,
